@@ -14,7 +14,7 @@ const projects = [
     image: 'https://placehold.co/600x400.png',
     githubUrl: '#',
     technologies: ['Python3', 'Flask', 'Kali Linux'],
-    category: 'Web Development',
+    category: 'Web Development/Cybersecurity',
     aiHint: 'website security'
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     image: 'https://placehold.co/600x400.png',
     githubUrl: '#',
     technologies: ['Linux', 'Jitsi Meet', 'Web Development Frameworks', 'Cloud Hosting'],
-    category: 'Web Development',
+    category: 'Web Development/Cybersecurity',
     aiHint: 'video conference'
   },
   {
@@ -59,7 +59,7 @@ const projects = [
     image: 'https://placehold.co/600x400.png',
     githubUrl: '#',
     technologies: ['C++', 'Node.js', 'MySQL'],
-    category: 'Web Development',
+    category: 'Web Development/Cybersecurity',
     aiHint: 'movie database'
   },
   {
@@ -91,7 +91,7 @@ const projects = [
   }
 ];
 
-const categories = ['All Projects', 'AI & Machine Learning', 'Web Development', 'Mobile Apps', 'Hardware'];
+const categories = ['All Projects', 'AI & Machine Learning', 'Web Development/Cybersecurity', 'Mobile Apps', 'Hardware'];
 
 export function ProjectsSection() {
     const [isVisible, setIsVisible] = useState(false);
