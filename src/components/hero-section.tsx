@@ -111,7 +111,7 @@ export function HeroSection() {
               repeat={Infinity}
             />
             <p className="max-w-[600px] text-lg text-muted-foreground md:text-xl">
-              I develop intelligent AI systems, build secure full-stack web and mobile applications, and analyze complex data to drive innovation. Explore my work to see how I'm shaping the future with technology.
+              I develop intelligent AI systems, build full-stack web and mobile applications with a keen eye on security, and analyze complex data to drive innovation. Explore my work to see how I'm shaping the future with technology.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="animate-pulse-slow">
