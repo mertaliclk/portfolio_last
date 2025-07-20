@@ -130,7 +130,7 @@ export function AboutSection() {
                         <Image src="https://placehold.co/600x400.png" alt="American Football image 2" width={600} height={400} className="rounded-md object-cover" data-ai-hint="football player" />
                     </div>
                      <Button asChild variant="destructive">
-                        <Link href="https://www.youtube.com/@cantguardmac13" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://www.youtube.com/watch?v=VQxN4uxEV3k" target="_blank" rel="noopener noreferrer">
                             <Youtube className="mr-2 h-5 w-5" />
                             Watch My Football Highlights
                         </Link>

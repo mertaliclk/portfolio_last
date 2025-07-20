@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Feather, Github, Linkedin, Instagram } from 'lucide-react';
+import { Menu, Feather, Github, Linkedin, Instagram, Youtube } from 'lucide-react';
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -93,6 +93,9 @@ export function Header() {
              <Button asChild variant="ghost" size="icon">
               <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></Link>
             </Button>
+            <Button asChild variant="ghost" size="icon">
+              <Link href="https://www.youtube.com/@cantguardmac13" target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></Link>
+            </Button>
           </div>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -128,6 +131,9 @@ export function Header() {
                   </Button>
                    <Button asChild variant="outline" size="icon">
                     <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram /></Link>
+                  </Button>
+                  <Button asChild variant="outline" size="icon">
+                    <Link href="https://www.youtube.com/@cantguardmac13" target="_blank" rel="noopener noreferrer"><Youtube /></Link>
                   </Button>
                 </div>
               </div>
