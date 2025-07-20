@@ -3,8 +3,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { getResumeDownloadURL } from '@/lib/firebase';
-import { Download, Mail, Copy } from 'lucide-react';
+import { Download, Mail, Copy, Github, Linkedin, Instagram, Youtube } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import Link from 'next/link';
+
+const socialLinks = [
+  { href: 'https://github.com/mertali-c', icon: Github, label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/mert-ali-cetin/', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/mac.13', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.youtube.com/channel/UCgnxcN-y-Y-A1-4t_5nS73Q', icon: Youtube, label: 'YouTube' },
+];
 
 export function ContactSection() {
   const [resumeUrl, setResumeUrl] = React.useState('#');
@@ -86,6 +94,16 @@ export function ContactSection() {
                     <Download className="mr-2 h-4 w-4" /> Download Resume
                 </a>
             </Button>
+            <div className="flex items-center gap-4 pt-4">
+                {socialLinks.map((social) => (
+                    <Button key={social.label} variant="ghost" size="icon" asChild>
+                        <Link href={social.href} target="_blank" rel="noopener noreferrer">
+                            <social.icon className="h-6 w-6" />
+                            <span className="sr-only">{social.label}</span>
+                        </Link>
+                    </Button>
+                ))}
+            </div>
         </div>
       </div>
     </section>

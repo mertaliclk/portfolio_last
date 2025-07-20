@@ -12,6 +12,14 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
+const socialLinks = [
+  { href: 'https://github.com/mertali-c', icon: Github, label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/mert-ali-cetin/', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/mac.13', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.youtube.com/channel/UCgnxcN-y-Y-A1-4t_5nS73Q', icon: Youtube, label: 'YouTube' },
+];
+
+
 export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeLink, setActiveLink] = useState('');
@@ -83,6 +91,17 @@ export function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end">
+           <div className="hidden md:flex items-center gap-2">
+            {socialLinks.map((social) => (
+              <Button key={social.label} variant="ghost" size="icon" asChild>
+                <Link href={social.href} target="_blank" rel="noopener noreferrer">
+                  <social.icon className="h-5 w-5" />
+                  <span className="sr-only">{social.label}</span>
+                </Link>
+              </Button>
+            ))}
+          </div>
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden ml-2">
@@ -108,6 +127,16 @@ export function Header() {
                     </Link>
                   ))}
                 </nav>
+                <div className="flex items-center gap-2 mt-8">
+                  {socialLinks.map((social) => (
+                    <Button key={social.label} variant="ghost" size="icon" asChild>
+                      <Link href={social.href} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="h-5 w-5" />
+                        <span className="sr-only">{social.label}</span>
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
               </div>
             </SheetContent>
           </Sheet>
