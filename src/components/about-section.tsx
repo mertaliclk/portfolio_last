@@ -1,12 +1,4 @@
 import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Code, Database, Wind } from 'lucide-react';
-
-const skills = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 
-  'Tailwind CSS', 'Node.js', 'Firebase', 'Git', 'UI/UX Design'
-];
 
 export function AboutSection() {
   return (
@@ -32,23 +24,6 @@ export function AboutSection() {
                 I am a dedicated and results-driven developer with a passion for building beautiful and functional web applications. My journey into technology started with a fascination for how things work, which led me to master various technologies and frameworks. I thrive in collaborative environments and am always eager to learn and tackle new challenges. When I'm not coding, I enjoy exploring new hiking trails and experimenting with new recipes.
               </p>
             </div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Code className="h-6 w-6 text-primary" />
-                  My Skills
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <Badge key={skill} variant="secondary" className="text-sm">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
