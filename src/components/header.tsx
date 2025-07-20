@@ -8,7 +8,6 @@ import { Menu, Feather } from 'lucide-react';
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#projects', label: 'Projects' },
-  { href: '#ai-assistant', label: 'AI Assistant' },
   { href: '#contact', label: 'Contact' },
 ];
 
