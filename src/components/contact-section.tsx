@@ -3,12 +3,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { getResumeDownloadURL } from '@/lib/firebase';
-import { Download, Mail } from 'lucide-react';
+import { Download, Mail, Copy } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 export function ContactSection() {
   const [resumeUrl, setResumeUrl] = React.useState('#');
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const email = 'mertali@alumni.sabanciuniv.edu';
+  const { toast } = useToast();
 
   React.useEffect(() => {
     getResumeDownloadURL().then(setResumeUrl);
@@ -38,6 +41,13 @@ export function ContactSection() {
     };
   }, []);
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(email);
+    toast({
+      title: 'Email Copied!',
+      description: 'The email address has been copied to your clipboard.',
+    });
+  };
 
   return (
     <section id="contact" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#1a1a1a]">
@@ -45,16 +55,24 @@ export function ContactSection() {
         <div className="space-y-3">
           <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl/tight text-primary-foreground">Get in Touch</h2>
           <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Have a project in mind, or just want to say hello? Send me an email or connect with me on social media.
+            Have a project in mind, or just want to say hello? I'm always open to discussing new opportunities and collaborations.
           </p>
         </div>
-        <div className="mx-auto w-full max-w-sm space-y-6">
-           <Button asChild size="lg">
-              <a href="mailto:mertali@alumni.sabanciuniv.edu">
-                <Mail className="mr-2 h-5 w-5" />
-                Send me an email
-              </a>
-            </Button>
+        <div className="mx-auto w-full max-w-lg space-y-6">
+            <div className="relative group">
+                <a href={`mailto:${email}`} className="flex items-center justify-center gap-2 font-mono text-lg text-primary transition-all duration-300 group-hover:tracking-wider">
+                    {email}
+                </a>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleCopy}
+                    className="absolute -right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Copy email address"
+                >
+                    <Copy className="h-5 w-5" />
+                </Button>
+            </div>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 mt-8">
             <Button asChild variant="link" disabled={resumeUrl === '#'}>
