@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 const projects = [
   {
     title: 'Dovet Website',
-    description: 'Dovet is a modern e-commerce platform designed for selling high-quality towels. Built with Next.js, React, TypeScript, and Tailwind CSS, it offers a seamless user experience with a clean, minimalist design. The platform integrates Firebase for robust product and user management, a persistent shopping cart, secure authentication, and real-time admin controls.',
+    description: 'Dovet is a modern e-commerce platform designed for selling high-quality towels. Built with Next.js, React, TypeScript, and Tailwind CSS, it offers a seamless user experience with a clean, minimalist design. The platform integrates Firebase for robust product and user management, a persistent shopping cart, and secure authentication.',
     image: 'https://placehold.co/600x400.png',
     liveUrl: 'https://dovet.co',
     githubUrl: '#',
@@ -105,16 +105,16 @@ const categories = ['All Projects', 'AI & Machine Learning', 'Web Development/Cy
 
 const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0], index: number, isVisible: boolean }) => {
     const cardRef = useRef<HTMLDivElement>(null);
-    const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+    const [isEntranceAnimationDone, setIsEntranceAnimationDone] = useState(false);
 
     useEffect(() => {
-        if (isVisible && !hasAnimatedIn) {
+        if (isVisible) {
             const timer = setTimeout(() => {
-                setHasAnimatedIn(true);
-            }, index * 100);
+                setIsEntranceAnimationDone(true);
+            }, index * 100 + 500); // Wait for fade-in to complete
             return () => clearTimeout(timer);
         }
-    }, [isVisible, hasAnimatedIn, index]);
+    }, [isVisible, index]);
 
     useEffect(() => {
         const card = cardRef.current;
@@ -156,7 +156,7 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
                 transitionProperty: 'transform, opacity',
                 transitionTimingFunction: 'ease-out',
                 transitionDuration: '500ms',
-                transitionDelay: hasAnimatedIn ? '0ms' : `${index * 100}ms`
+                transitionDelay: `${index * 100}ms`
             }}
         >
             <CardHeader className="p-0">
