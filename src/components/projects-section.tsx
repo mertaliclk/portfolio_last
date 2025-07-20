@@ -82,7 +82,7 @@ export function ProjectsSection() {
         </div>
         <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           {projects.map((project, index) => (
-            <Card key={index} className={`overflow-hidden transition-all duration-1000 ease-in-out hover:-translate-y-2 hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
+            <Card key={index} className={`overflow-hidden transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 100}ms`}}>
               <CardHeader className="p-0">
                 <Image
                   src={project.image}

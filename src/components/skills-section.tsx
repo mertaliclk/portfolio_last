@@ -52,13 +52,13 @@ export function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                     {skillsData.map((skill, index) => (
-                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
+                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
                             <CardContent className="p-0">
                                 <div className="flex justify-between items-center mb-2">
                                     <h3 className="text-lg font-semibold">{skill.name}</h3>
                                     <span className="text-sm font-medium text-muted-foreground">{skill.level}%</span>
                                 </div>
-                                <Progress value={skill.level} indicatorClassName={skill.color} />
+                                <Progress value={isVisible ? skill.level : 0} indicatorClassName={`${skill.color} transition-all duration-1000 ease-in-out`} />
                             </CardContent>
                         </Card>
                     ))}
