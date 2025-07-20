@@ -16,12 +16,15 @@ export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeLink, setActiveLink] = useState('');
   const observer = useRef<IntersectionObserver | null>(null);
+  const isClickNavigating = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (observer.current) {
         observer.current.disconnect();
     }
     observer.current = new IntersectionObserver((entries) => {
+      if (isClickNavigating.current) return; // Ignore observer if we are click-scrolling
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 setActiveLink(entry.target.id);
@@ -41,8 +44,19 @@ export function Header() {
   
   const handleLinkClick = (href: string) => {
     const sectionId = href.substring(1);
+
+    // Immediately update the active link
     setActiveLink(sectionId);
     setIsOpen(false);
+    
+    // Disable observer and set a timeout to re-enable it after scroll
+    isClickNavigating.current = true;
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+    scrollTimeout.current = setTimeout(() => {
+      isClickNavigating.current = false;
+    }, 1000); // A bit longer than scroll duration
   };
 
   return (
