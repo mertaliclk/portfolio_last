@@ -6,8 +6,36 @@ import { Code, Database, Terminal, Cpu } from 'lucide-react';
 
 const skillsData = {
     languages: ["Python", "C", "C++", "JavaScript", "TypeScript", "Swift", "SQL", "MATLAB", "Bash (Shell Scripting)", "Assembly", "Scheme", "Prolog", "Verilog"],
-    frameworks: ["Flutter", "React", "Node.js"],
-    tools: ["Kali Linux", "Postman", "Git", "Firebase"],
+    frameworks: [
+        "React", 
+        "Next.js", 
+        "Node.js", 
+        "Vue.js",
+        "Flutter", 
+        "Tailwind CSS", 
+        "Redux / Zustand", 
+        "Vite", 
+        "Chakra UI / MUI", 
+        "TensorFlow / PyTorch", 
+        "scikit-learn", 
+        "Pandas", 
+        "NumPy", 
+        "Matplotlib",
+        "Seaborn",
+        "OpenCV", 
+        "LangChain / LlamaIndex"
+    ],
+    tools: [
+        "Git",
+        "Firebase",
+        "PostgreSQL / MongoDB",
+        "Vercel",
+        "Nginx",
+        "Kali Linux", 
+        "Wireshark",
+        "Figma",
+        "Postman", 
+    ],
 };
 
 const skillCategories = [
