@@ -80,9 +80,9 @@ export function ProjectsSection() {
             Here are some of the projects I've worked on. Each project demonstrates my skills in different areas of web development.
           </p>
         </div>
-        <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+        <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 [perspective:1000px]">
           {projects.map((project, index) => (
-            <Card key={index} className={`overflow-hidden transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 100}ms`}}>
+            <Card key={index} className={`overflow-hidden transition-all duration-500 ease-in-out hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`} style={{ transitionDelay: `${index * 100}ms`}}>
               <CardHeader className="p-0">
                 <Image
                   src={project.image}

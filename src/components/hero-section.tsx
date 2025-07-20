@@ -1,7 +1,9 @@
+'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, FileText } from 'lucide-react';
 import Image from 'next/image';
+import { TypeAnimation } from 'react-type-animation';
 
 export function HeroSection() {
   return (
@@ -12,12 +14,23 @@ export function HeroSection() {
             <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
               Hi, I'm Mert Ali
             </h1>
-            <p className="text-2xl font-semibold text-primary">AI Developer & Data Processing Analyst</p>
+            <TypeAnimation
+              sequence={[
+                'AI Developer',
+                2000,
+                'Data Processing Analyst',
+                2000,
+              ]}
+              wrapper="p"
+              speed={50}
+              className="text-2xl font-semibold text-primary"
+              repeat={Infinity}
+            />
             <p className="max-w-[600px] text-lg text-muted-foreground md:text-xl">
               I specialize in developing intelligent systems and analyzing complex data to drive innovation. Explore my work to see how I'm shaping the future with AI.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="animate-pulse-slow">
                 <Link href="#projects">
                   View My Projects
                   <ArrowRight className="ml-2 h-5 w-5" />
