@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Feather, Github, Linkedin } from 'lucide-react';
+import { Menu, Feather, Github, Linkedin, Instagram } from 'lucide-react';
 
 const navLinks = [
   { href: '#about', label: 'About' },
@@ -85,10 +85,13 @@ export function Header() {
         <div className="flex flex-1 items-center justify-end">
           <div className="hidden md:flex items-center space-x-2 mr-2">
             <Button asChild variant="ghost" size="icon">
-              <Link href="#" target="_blank" rel="noopener noreferrer"><Github className="h-5 w-5" /></Link>
+              <Link href="https://github.com/mertaliclk" target="_blank" rel="noopener noreferrer"><Github className="h-5 w-5" /></Link>
             </Button>
             <Button asChild variant="ghost" size="icon">
-              <Link href="#" target="_blank" rel="noopener noreferrer"><Linkedin className="h-5 w-5" /></Link>
+              <Link href="https://www.linkedin.com/in/mertaliclk" target="_blank" rel="noopener noreferrer"><Linkedin className="h-5 w-5" /></Link>
+            </Button>
+             <Button asChild variant="ghost" size="icon">
+              <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></Link>
             </Button>
           </div>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -118,10 +121,13 @@ export function Header() {
                 </nav>
                 <div className="flex space-x-4 mt-8">
                   <Button asChild variant="outline" size="icon">
-                    <Link href="#" target="_blank" rel="noopener noreferrer"><Github /></Link>
+                    <Link href="https://github.com/mertaliclk" target="_blank" rel="noopener noreferrer"><Github /></Link>
                   </Button>
                   <Button asChild variant="outline" size="icon">
-                    <Link href="#" target="_blank" rel="noopener noreferrer"><Linkedin /></Link>
+                    <Link href="https://www.linkedin.com/in/mertaliclk" target="_blank" rel="noopener noreferrer"><Linkedin /></Link>
+                  </Button>
+                   <Button asChild variant="outline" size="icon">
+                    <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram /></Link>
                   </Button>
                 </div>
               </div>
