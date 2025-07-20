@@ -4,10 +4,20 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Github } from 'lucide-react';
+import { Github, Link as LinkIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const projects = [
+  {
+    title: 'Dovet Website',
+    description: 'A modern and sleek website for Dovet, showcasing their services and brand. The site is designed to be fully responsive and user-friendly.',
+    image: 'https://placehold.co/600x400.png',
+    githubUrl: '#',
+    liveUrl: 'https://dovet.co',
+    technologies: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
+    category: 'Web Development/Cybersecurity',
+    aiHint: 'corporate website'
+  },
   {
     title: 'Turkish Travel Website Honeypot',
     description: 'Developed a Flask-based honeypot web application for a Turkish travel advice/news website, incorporating dynamic content delivery through RSS feeds, advanced user authentication mechanisms, and an interactive comment system.',
@@ -174,6 +184,13 @@ export function ProjectsSection() {
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0 flex justify-end gap-2">
+                {project.liveUrl && (
+                  <Button asChild variant="outline">
+                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <LinkIcon className="mr-2 h-4 w-4" /> Live Demo
+                    </Link>
+                  </Button>
+                )}
                 <Button asChild>
                   <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                     <Github className="mr-2 h-4 w-4" /> View Project
