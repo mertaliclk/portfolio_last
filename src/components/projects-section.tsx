@@ -139,11 +139,10 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
     return (
         <Card
             ref={cardRef}
-            className={`overflow-hidden transition-shadow duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
+            className={`overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
             style={{ 
                 transitionDelay: `${index * 100}ms`,
-                transitionProperty: 'transform, box-shadow',
-                transitionDuration: '300ms'
+                transitionProperty: 'opacity, transform'
             }}
         >
             <CardHeader className="p-0">
