@@ -111,7 +111,7 @@ export function HeroSection() {
               repeat={Infinity}
             />
             <p className="max-w-[600px] text-lg text-muted-foreground md:text-xl">
-              I develop intelligent AI systems, leveraging Large Language Models to build innovative conversational applications. Explore my work to see how I'm shaping the future with technology.
+              I develop intelligent AI systems, leveraging Large Language Models to build innovative conversational applications. I also build secure, full-stack websites and have a solid foundation in cybersecurity principles.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="animate-pulse-slow">
