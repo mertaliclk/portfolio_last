@@ -127,7 +127,7 @@ export function ProjectsSection() {
         : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#0a0a0a]">
+    <section id="projects" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#0a0a0a] relative z-20">
       <div className="container mx-auto px-4 md:px-6">
         <div className={`flex flex-col items-center justify-center space-y-4 text-center transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
@@ -138,7 +138,7 @@ export function ProjectsSection() {
           </p>
         </div>
         
-        <div className={`flex justify-center flex-wrap gap-2 my-12 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '200ms' }}>
+        <div className={`relative z-10 flex justify-center flex-wrap gap-2 my-12 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100' : 'opacity-0'}`} style={{ transitionDelay: '200ms' }}>
             {categories.map(category => (
                 <Button 
                     key={category} 
