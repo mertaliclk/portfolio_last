@@ -8,10 +8,10 @@ import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
 const socialLinks = [
-  { href: 'https://github.com/mertali-c', icon: Github, label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/mert-ali-cetin/', icon: Linkedin, label: 'LinkedIn' },
-  { href: 'https://www.instagram.com/mac.13', icon: Instagram, label: 'Instagram' },
-  { href: 'https://www.youtube.com/channel/UCgnxcN-y-Y-A1-4t_5nS73Q', icon: Youtube, label: 'YouTube' },
+  { href: 'https://github.com/mertaliclk', icon: Github, label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/mertaliclk/', icon: Linkedin, label: 'LinkedIn' },
+  { href: 'https://www.instagram.com/mertaliclk/', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.youtube.com/@cantguardmac13', icon: Youtube, label: 'YouTube' },
 ];
 
 export function ContactSection() {
