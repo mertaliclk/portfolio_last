@@ -4,14 +4,14 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 
 const skillsData = [
-    { name: 'React', level: 90, color: 'bg-sky-500' },
-    { name: 'JavaScript', level: 85, color: 'bg-yellow-500' },
-    { name: 'HTML/CSS', level: 90, color: 'bg-red-500' },
-    { name: 'Node.js', level: 80, color: 'bg-green-500' },
-    { name: 'Python', level: 75, color: 'bg-blue-500' },
-    { name: 'SQL', level: 85, color: 'bg-indigo-500' },
-    { name: 'TypeScript', level: 88, color: 'bg-cyan-500' },
-    { name: 'Firebase', level: 82, color: 'bg-amber-500' },
+    { name: 'React', level: 90, color: 'bg-sky-500', borderColor: 'hover:border-sky-500' },
+    { name: 'JavaScript', level: 85, color: 'bg-yellow-500', borderColor: 'hover:border-yellow-500' },
+    { name: 'HTML/CSS', level: 90, color: 'bg-red-500', borderColor: 'hover:border-red-500' },
+    { name: 'Node.js', level: 80, color: 'bg-green-500', borderColor: 'hover:border-green-500' },
+    { name: 'Python', level: 75, color: 'bg-blue-500', borderColor: 'hover:border-blue-500' },
+    { name: 'SQL', level: 85, color: 'bg-indigo-500', borderColor: 'hover:border-indigo-500' },
+    { name: 'TypeScript', level: 88, color: 'bg-cyan-500', borderColor: 'hover:border-cyan-500' },
+    { name: 'Firebase', level: 82, color: 'bg-amber-500', borderColor: 'hover:border-amber-500' },
 ];
 
 export function SkillsSection() {
@@ -52,7 +52,7 @@ export function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                     {skillsData.map((skill, index) => (
-                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
+                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-500 ease-out border-2 border-transparent hover:scale-105 hover:shadow-lg ${skill.borderColor} ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
                             <CardContent className="p-0">
                                 <div className="flex justify-between items-center mb-2">
                                     <h3 className="text-lg font-semibold">{skill.name}</h3>
