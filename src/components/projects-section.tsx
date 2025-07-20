@@ -70,7 +70,7 @@ export function ProjectsSection() {
     }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50 dark:bg-secondary/20">
+    <section id="projects" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-4 md:px-6">
         <div className={`flex flex-col items-center justify-center space-y-4 text-center transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">

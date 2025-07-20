@@ -7,8 +7,8 @@ export function HeroSection() {
   return (
     <section id="home" className="relative w-full py-20 md:py-32 bg-gradient-to-br from-background via-green-900/10 to-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6">
+        <div className="grid grid-cols-1 items-center gap-12">
+          <div className="flex flex-col items-center text-center space-y-6">
             <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
               Crafting Digital Experiences
             </h1>
@@ -29,16 +29,6 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-          </div>
-          <div className="flex justify-center">
-            <Image
-              src="https://placehold.co/600x600.png"
-              alt="Hero Image"
-              width={500}
-              height={500}
-              className="rounded-full shadow-2xl aspect-square object-cover"
-              data-ai-hint="abstract geometric"
-            />
           </div>
         </div>
       </div>
