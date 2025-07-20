@@ -62,7 +62,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="md:flex-1 flex items-center">
+        <div className="flex-1 flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <Feather className="h-6 w-6 text-primary" />
             <span className="font-bold font-headline hidden sm:inline-block">FolioForge</span>
@@ -83,20 +83,6 @@ export function Header() {
         </nav>
 
         <div className="flex flex-1 items-center justify-end">
-          <div className="hidden md:flex items-center space-x-2 mr-2">
-            <Button asChild variant="ghost" size="icon">
-              <Link href="https://github.com/mertaliclk" target="_blank" rel="noopener noreferrer"><Github className="h-5 w-5" /></Link>
-            </Button>
-            <Button asChild variant="ghost" size="icon">
-              <Link href="https://www.linkedin.com/in/mertaliclk" target="_blank" rel="noopener noreferrer"><Linkedin className="h-5 w-5" /></Link>
-            </Button>
-             <Button asChild variant="ghost" size="icon">
-              <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></Link>
-            </Button>
-            <Button asChild variant="ghost" size="icon">
-              <Link href="https://www.youtube.com/@cantguardmac13" target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></Link>
-            </Button>
-          </div>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden ml-2">
@@ -122,20 +108,6 @@ export function Header() {
                     </Link>
                   ))}
                 </nav>
-                <div className="flex space-x-4 mt-8">
-                  <Button asChild variant="outline" size="icon">
-                    <Link href="https://github.com/mertaliclk" target="_blank" rel="noopener noreferrer"><Github /></Link>
-                  </Button>
-                  <Button asChild variant="outline" size="icon">
-                    <Link href="https://www.linkedin.com/in/mertaliclk" target="_blank" rel="noopener noreferrer"><Linkedin /></Link>
-                  </Button>
-                   <Button asChild variant="outline" size="icon">
-                    <Link href="https://www.instagram.com/mertaliclk/" target="_blank" rel="noopener noreferrer"><Instagram /></Link>
-                  </Button>
-                  <Button asChild variant="outline" size="icon">
-                    <Link href="https://www.youtube.com/@cantguardmac13" target="_blank" rel="noopener noreferrer"><Youtube /></Link>
-                  </Button>
-                </div>
               </div>
             </SheetContent>
           </Sheet>
