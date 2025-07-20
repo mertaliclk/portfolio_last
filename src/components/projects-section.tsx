@@ -103,6 +103,84 @@ const projects = [
 
 const categories = ['All Projects', 'AI & Machine Learning', 'Web Development/Cybersecurity', 'Mobile Apps', 'Hardware'];
 
+const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0], index: number, isVisible: boolean }) => {
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const card = cardRef.current;
+        if (!card) return;
+
+        const handleMouseMove = (e: MouseEvent) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateY = (x / (rect.width / 2)) * 15;
+            const rotateX = -(y / (rect.height / 2)) * 15;
+            card.style.setProperty('--rotate-y', `${rotateY}deg`);
+            card.style.setProperty('--rotate-x', `${rotateX}deg`);
+            card.style.setProperty('--translate-z', `50px`);
+        };
+
+        const handleMouseLeave = () => {
+            card.style.setProperty('--rotate-y', '0deg');
+            card.style.setProperty('--rotate-x', '0deg');
+            card.style.setProperty('--translate-z', `0px`);
+        };
+
+        card.addEventListener('mousemove', handleMouseMove);
+        card.addEventListener('mouseleave', handleMouseLeave);
+        
+        return () => {
+            card.removeEventListener('mousemove', handleMouseMove);
+            card.removeEventListener('mouseleave', handleMouseLeave);
+        };
+    }, []);
+    
+    return (
+        <Card
+            ref={cardRef}
+            className={`overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
+            style={{ transitionDelay: `${index * 100}ms` }}
+        >
+            <CardHeader className="p-0">
+                <Image
+                    src={project.image}
+                    alt={`Image of ${project.title}`}
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                    data-ai-hint={project.aiHint}
+                />
+            </CardHeader>
+            <CardContent className="p-6 space-y-4">
+                <CardTitle className="font-headline text-2xl">{project.title}</CardTitle>
+                <CardDescription>{project.description}</CardDescription>
+                <div className="flex flex-wrap gap-2">
+                    {project.technologies.map(tech => (
+                        <Badge key={tech} variant="secondary">{tech}</Badge>
+                    ))}
+                </div>
+            </CardContent>
+            <CardFooter className="p-6 pt-0 flex justify-end gap-2">
+                {project.liveUrl && (
+                    <Button asChild>
+                        <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <LinkIcon className="mr-2 h-4 w-4" /> Visit Live Page
+                        </Link>
+                    </Button>
+                )}
+                {project.githubUrl && project.title !== 'Dovet Website' && (
+                    <Button asChild>
+                        <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="mr-2 h-4 w-4" /> View Project
+                        </Link>
+                    </Button>
+                )}
+            </CardFooter>
+        </Card>
+    );
+};
+
 export function ProjectsSection() {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -161,45 +239,9 @@ export function ProjectsSection() {
             ))}
         </div>
 
-        <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 [perspective:1000px]">
+        <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           {filteredProjects.map((project, index) => (
-            <Card key={`${activeCategory}-${index}`} className={`overflow-hidden transition-all duration-500 ease-in-out hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`} style={{ transitionDelay: `${index * 100}ms`}}>
-              <CardHeader className="p-0">
-                <Image
-                  src={project.image}
-                  alt={`Image of ${project.title}`}
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover"
-                  data-ai-hint={project.aiHint}
-                />
-              </CardHeader>
-              <CardContent className="p-6 space-y-4">
-                <CardTitle className="font-headline text-2xl">{project.title}</CardTitle>
-                <CardDescription>{project.description}</CardDescription>
-                <div className="flex flex-wrap gap-2">
-                    {project.technologies.map(tech => (
-                        <Badge key={tech} variant="secondary">{tech}</Badge>
-                    ))}
-                </div>
-              </CardContent>
-              <CardFooter className="p-6 pt-0 flex justify-end gap-2">
-                {project.liveUrl && (
-                  <Button asChild>
-                    <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <LinkIcon className="mr-2 h-4 w-4" /> Visit Live Page
-                    </Link>
-                  </Button>
-                )}
-                {project.githubUrl && project.title !== 'Dovet Website' && (
-                  <Button asChild>
-                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" /> View Project
-                    </Link>
-                  </Button>
-                )}
-              </CardFooter>
-            </Card>
+            <ProjectCard key={`${activeCategory}-${index}`} project={project} index={index} isVisible={isVisible} />
           ))}
         </div>
       </div>
