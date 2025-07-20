@@ -83,3 +83,15 @@ body {
 .link-underline.active::after {
     transform: scaleX(1);
 }
+
+@layer utilities {
+  .btn-interaction {
+    @apply transition-transform duration-200 ease-in-out;
+  }
+  .btn-interaction:hover {
+    @apply -translate-y-0.5;
+  }
+  .btn-interaction:active {
+    @apply translate-y-0;
+  }
+}
