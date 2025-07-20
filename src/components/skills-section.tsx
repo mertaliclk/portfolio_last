@@ -52,7 +52,7 @@ export function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
                     {skillsData.map((skill, index) => (
-                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-200 ease-out border-2 border-transparent hover:scale-105 hover:shadow-lg ${skill.borderColor} ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: `${index * 100}ms`}}>
+                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-200 ease-out border-2 border-transparent hover:scale-105 hover:shadow-lg ${skill.borderColor} ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
                             <CardContent className="p-0">
                                 <div className="flex justify-between items-center mb-2">
                                     <h3 className="text-lg font-semibold">{skill.name}</h3>
