@@ -97,7 +97,7 @@ export function SkillsSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {skillCategories.map((category, index) => (
                          <div key={index} className={`transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${index * 150}ms`}}>
-                             <Card className="bg-card border-2 border-transparent h-full">
+                             <Card className="bg-card border-2 border-transparent h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-2">
                                  <CardHeader>
                                      <CardTitle className="flex items-center">
                                          {category.icon}
