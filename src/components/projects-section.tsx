@@ -105,6 +105,16 @@ const categories = ['All Projects', 'AI & Machine Learning', 'Web Development/Cy
 
 const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0], index: number, isVisible: boolean }) => {
     const cardRef = useRef<HTMLDivElement>(null);
+    const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
+
+    useEffect(() => {
+        if (isVisible && !hasAnimatedIn) {
+            const timer = setTimeout(() => {
+                setHasAnimatedIn(true);
+            }, index * 100 + 500); // Wait for entrance animation to finish
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, hasAnimatedIn, index]);
 
     useEffect(() => {
         const card = cardRef.current;
@@ -139,10 +149,12 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
     return (
         <Card
             ref={cardRef}
-            className={`overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
+            className={`overflow-hidden transition-all hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
             style={{ 
-                transitionDelay: `${index * 100}ms`,
-                transitionProperty: 'opacity, transform'
+                transitionDuration: '500ms',
+                transitionProperty: 'opacity, transform',
+                transitionTimingFunction: 'ease-out',
+                transitionDelay: hasAnimatedIn ? '0ms' : `${index * 100}ms`
             }}
         >
             <CardHeader className="p-0">
