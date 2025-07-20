@@ -123,7 +123,7 @@ export function AboutSection() {
             <div data-id="hobby-football" className={`transition-all duration-1000 ease-out ${visibleItems['hobby-football'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                 <div className="bg-card rounded-lg shadow-lg p-8">
                     <h4 className="font-headline text-3xl font-bold mb-2">American Football</h4>
-                    <p className="text-primary font-mono text-sm mb-4">#cantguardmac13</p>
+                    <p className="text-destructive font-mono text-sm mb-4">#cantguardmac13</p>
                     <p className="text-muted-foreground mb-6">During my time at Sabancı University, I played American Football as a Wide Receiver and Cornerback, wearing the jersey number 13. I was part of the Sabancı Seahawks team, contributing to both offense and defense positions. For one year, I served as the defensive coach for the girls' flag football team, helping develop their skills and strategies.</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                          <Image src="https://placehold.co/600x400.png" alt="American Football image 1" width={600} height={400} className="rounded-md object-cover" data-ai-hint="american football game" />
