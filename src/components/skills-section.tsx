@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from '@/components/ui/badge';
-import { Code, Database, Terminal, Cpu } from 'lucide-react';
+import { Code, Terminal } from 'lucide-react';
 
 const skillsData = {
     languages: ["Python", "C", "C++", "JavaScript", "TypeScript", "Swift", "SQL", "MATLAB", "Bash (Shell Scripting)", "Assembly", "Scheme", "Prolog", "Verilog"],
@@ -77,6 +77,7 @@ export function SkillsSection() {
 
         return () => {
             if (sectionRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 observer.unobserve(sectionRef.current);
             }
         };
