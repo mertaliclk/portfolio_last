@@ -191,7 +191,7 @@ export function ProjectsSection() {
                     </Link>
                   </Button>
                 )}
-                {project.githubUrl && (
+                {project.githubUrl && project.title !== 'Dovet Website' && (
                   <Button asChild>
                     <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="mr-2 h-4 w-4" /> View Project
