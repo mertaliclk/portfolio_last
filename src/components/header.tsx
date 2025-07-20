@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -15,26 +15,35 @@ const navLinks = [
 export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeLink, setActiveLink] = useState('');
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
+    if (observer.current) {
+        observer.current.disconnect();
+    }
+    observer.current = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setActiveLink(entry.target.id);
+            }
+        });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+
     const sections = navLinks.map(link => document.querySelector(link.href));
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        if (section && scrollPosition >= (section as HTMLElement).offsetTop && scrollPosition < (section as HTMLElement).offsetTop + (section as HTMLElement).offsetHeight) {
-          setActiveLink(section.id);
-          break;
+    sections.forEach(section => {
+        if (section) {
+            observer.current?.observe(section);
         }
-      }
-    };
+    });
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => observer.current?.disconnect();
   }, []);
+  
+  const handleLinkClick = (href: string) => {
+    const sectionId = href.substring(1);
+    setActiveLink(sectionId);
+    setIsOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -51,7 +60,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setActiveLink(link.href.substring(1))}
+              onClick={() => handleLinkClick(link.href)}
               className={`link-underline transition-colors hover:text-primary uppercase tracking-wider ${activeLink === link.href.substring(1) ? 'active' : ''}`}
             >
               {link.label}
@@ -87,10 +96,7 @@ export function Header() {
                       key={link.href}
                       href={link.href}
                       className="text-lg transition-colors hover:text-primary"
-                      onClick={() => {
-                        setActiveLink(link.href.substring(1));
-                        setIsOpen(false);
-                      }}
+                      onClick={() => handleLinkClick(link.href)}
                     >
                       {link.label}
                     </Link>
