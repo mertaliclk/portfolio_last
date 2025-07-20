@@ -93,7 +93,7 @@ export function ContactSection() {
     <section id="contact" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#1a1a1a]">
       <div className={`container mx-auto grid items-center justify-center gap-8 px-4 text-center md:px-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="space-y-3">
-          <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl/tight">Get in Touch</h2>
+          <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl/tight" style={{color: '#FFC300'}}>Get in Touch</h2>
           <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Have a project in mind, or just want to say hello? Fill out the form below or connect with me on social media.
           </p>
