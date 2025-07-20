@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Briefcase, Heart, PlayCircle } from 'lucide-react';
+import { Briefcase, Heart, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -129,9 +129,9 @@ export function AboutSection() {
                          <Image src="https://placehold.co/600x400.png" alt="American Football image 1" width={600} height={400} className="rounded-md object-cover" data-ai-hint="american football game" />
                         <Image src="https://placehold.co/600x400.png" alt="American Football image 2" width={600} height={400} className="rounded-md object-cover" data-ai-hint="football player" />
                     </div>
-                     <Button asChild>
+                     <Button asChild variant="destructive">
                         <Link href="#" target="_blank" rel="noopener noreferrer">
-                            <PlayCircle className="mr-2 h-5 w-5" />
+                            <Youtube className="mr-2 h-5 w-5" />
                             Watch My Football Highlights
                         </Link>
                     </Button>
