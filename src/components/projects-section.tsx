@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 const projects = [
   {
     title: 'Dovet Website',
-    description: 'Dovet is a modern e-commerce platform designed for selling high-quality towels. Built with Next.js, React, TypeScript, and Tailwind CSS, it offers a seamless user experience with a clean, minimalist design. The platform integrates Firebase for robust product and user management, a persistent shopping cart, secure authentication, and real-time admin controls. Future enhancements include payment processing, AI-driven product recommendations, and automated email notifications.',
+    description: 'Dovet is a modern e-commerce platform designed for selling high-quality towels. Built with Next.js, React, TypeScript, and Tailwind CSS, it offers a seamless user experience with a clean, minimalist design. The platform integrates Firebase for robust product and user management, a persistent shopping cart, secure authentication, and real-time admin controls.',
     image: 'https://placehold.co/600x400.png',
     liveUrl: 'https://dovet.co',
     githubUrl: '#',
@@ -111,7 +111,7 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
         if (isVisible && !hasAnimatedIn) {
             const timer = setTimeout(() => {
                 setHasAnimatedIn(true);
-            }, index * 100 + 500); // Wait for entrance animation to finish
+            }, index * 100);
             return () => clearTimeout(timer);
         }
     }, [isVisible, hasAnimatedIn, index]);
@@ -149,11 +149,13 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
     return (
         <Card
             ref={cardRef}
-            className={`overflow-hidden transition-all hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
+            className={`overflow-hidden transition-opacity duration-500 ease-out hover:shadow-2xl hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
             style={{ 
-                transitionDuration: '500ms',
-                transitionProperty: 'opacity, transform',
+                transform: isVisible ? 'translateY(0)' : 'translateY(2rem)',
+                opacity: isVisible ? 1 : 0,
+                transitionProperty: 'transform, opacity',
                 transitionTimingFunction: 'ease-out',
+                transitionDuration: '500ms',
                 transitionDelay: hasAnimatedIn ? '0ms' : `${index * 100}ms`
             }}
         >
