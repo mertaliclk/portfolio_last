@@ -1,17 +1,31 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from '@/components/ui/badge';
+import { Code, Database, Terminal, Cpu } from 'lucide-react';
 
-const skillsData = [
-    { name: 'React', level: 90, color: 'bg-sky-500', borderColor: 'hover:border-sky-500' },
-    { name: 'JavaScript', level: 85, color: 'bg-yellow-500', borderColor: 'hover:border-yellow-500' },
-    { name: 'HTML/CSS', level: 90, color: 'bg-red-500', borderColor: 'hover:border-red-500' },
-    { name: 'Node.js', level: 80, color: 'bg-green-500', borderColor: 'hover:border-green-500' },
-    { name: 'Python', level: 75, color: 'bg-blue-500', borderColor: 'hover:border-blue-500' },
-    { name: 'SQL', level: 85, color: 'bg-indigo-500', borderColor: 'hover:border-indigo-500' },
-    { name: 'TypeScript', level: 88, color: 'bg-cyan-500', borderColor: 'hover:border-cyan-500' },
-    { name: 'Firebase', level: 82, color: 'bg-amber-500', borderColor: 'hover:border-amber-500' },
+const skillsData = {
+    languages: ["Python", "C", "C++", "JavaScript", "TypeScript", "Swift", "SQL", "MATLAB", "Bash (Shell Scripting)", "Assembly", "Scheme", "Prolog", "Verilog"],
+    frameworks: ["Flutter", "React", "Node.js"],
+    tools: ["Kali Linux", "Postman", "Git", "Firebase"],
+};
+
+const skillCategories = [
+    {
+        title: "Languages",
+        icon: <Code className="w-6 h-6 mr-3 text-primary" />,
+        skills: skillsData.languages,
+    },
+    {
+        title: "Frameworks & Libraries",
+        icon: <Code className="w-6 h-6 mr-3 text-primary" />,
+        skills: skillsData.frameworks,
+    },
+    {
+        title: "Tools & Platforms",
+        icon: <Terminal className="w-6 h-6 mr-3 text-primary" />,
+        skills: skillsData.tools,
+    },
 ];
 
 export function SkillsSection() {
@@ -21,12 +35,10 @@ export function SkillsSection() {
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                        observer.unobserve(entry.target);
-                    }
-                });
+                if (entries[0].isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entries[0].target);
+                }
             },
             { threshold: 0.1 }
         );
@@ -45,22 +57,33 @@ export function SkillsSection() {
     return (
         <section id="skills" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-[#1a1a1a]">
             <div className="container mx-auto px-4 md:px-6">
-                <div className={`text-center mb-12 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                <div className={`text-center mb-16 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary-foreground">
                         Skills & Expertise
                     </h2>
+                    <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mt-4">
+                        A snapshot of the programming languages, tools, and technologies I work with.
+                    </p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-                    {skillsData.map((skill, index) => (
-                        <Card key={index} className={`bg-card p-6 shadow-md rounded-lg transition-all duration-200 ease-out border-2 border-transparent hover:scale-105 hover:shadow-lg ${skill.borderColor} ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
-                            <CardContent className="p-0">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className="text-lg font-semibold">{skill.name}</h3>
-                                    <span className="text-sm font-medium text-muted-foreground">{skill.level}%</span>
-                                </div>
-                                <Progress value={isVisible ? skill.level : 0} indicatorClassName={`${skill.color} transition-all duration-1000 ease-in-out`} />
-                            </CardContent>
-                        </Card>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {skillCategories.map((category, index) => (
+                         <div key={index} className={`transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${index * 150}ms`}}>
+                             <Card className="bg-card border-2 border-transparent h-full">
+                                 <CardHeader>
+                                     <CardTitle className="flex items-center">
+                                         {category.icon}
+                                         {category.title}
+                                     </CardTitle>
+                                 </CardHeader>
+                                 <CardContent>
+                                     <div className="flex flex-wrap gap-2">
+                                         {category.skills.map((skill) => (
+                                             <Badge key={skill} variant="secondary" className="text-sm py-1 px-3">{skill}</Badge>
+                                         ))}
+                                     </div>
+                                 </CardContent>
+                             </Card>
+                         </div>
                     ))}
                 </div>
             </div>
