@@ -36,7 +36,7 @@ const TimelineItem = ({ item, isVisible }: { item: typeof experienceData[0], isV
         <div className="w-0.5 flex-grow bg-primary/30"></div>
       </div>
       <div className="pb-12">
-        <div className="bg-card text-card-foreground rounded-lg shadow-lg p-6 -mt-2 transition-all duration-200 ease-in-out border-2 border-transparent hover:border-primary hover:scale-105 hover:shadow-xl">
+        <div className="bg-card text-card-foreground rounded-lg shadow-lg p-6 -mt-2 transition-all duration-300 ease-in-out border-2 border-transparent hover:border-primary hover:scale-[1.07] hover:-translate-y-1 hover:shadow-2xl">
             <p className="text-primary font-bold mb-1">{item.year}</p>
             <h3 className="font-headline text-2xl font-bold mb-2">{item.title}</h3>
             <p className="text-muted-foreground">{item.description}</p>
