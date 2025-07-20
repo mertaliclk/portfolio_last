@@ -114,8 +114,8 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            const rotateY = (x / (rect.width / 2)) * 15;
-            const rotateX = -(y / (rect.height / 2)) * 15;
+            const rotateY = (x / (rect.width / 2)) * 10;
+            const rotateX = -(y / (rect.height / 2)) * 10;
             card.style.setProperty('--rotate-y', `${rotateY}deg`);
             card.style.setProperty('--rotate-x', `${rotateX}deg`);
             card.style.setProperty('--translate-z', `50px`);
@@ -139,8 +139,12 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
     return (
         <Card
             ref={cardRef}
-            className={`overflow-hidden transition-all duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
-            style={{ transitionDelay: `${index * 100}ms` }}
+            className={`overflow-hidden transition-shadow duration-300 ease-out hover:shadow-2xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
+            style={{ 
+                transitionDelay: `${index * 100}ms`,
+                transitionProperty: 'transform, box-shadow',
+                transitionDuration: '300ms'
+            }}
         >
             <CardHeader className="p-0">
                 <Image
