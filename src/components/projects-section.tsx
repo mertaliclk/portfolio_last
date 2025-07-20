@@ -10,9 +10,8 @@ import { Badge } from '@/components/ui/badge';
 const projects = [
   {
     title: 'Dovet Website',
-    description: 'A modern and sleek website for Dovet, showcasing their services and brand. The site is designed to be fully responsive and user-friendly.',
+    description: 'Dovet is a modern e-commerce platform designed for selling high-quality towels. Built with Next.js, React, TypeScript, and Tailwind CSS, it offers a seamless user experience with a clean, minimalist design. The platform integrates Firebase for robust product and user management, a persistent shopping cart, secure authentication, and real-time admin controls. Future enhancements include payment processing, AI-driven product recommendations, and automated email notifications.',
     image: 'https://placehold.co/600x400.png',
-    githubUrl: '#',
     liveUrl: 'https://dovet.co',
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Vercel'],
     category: 'Web Development/Cybersecurity',
@@ -184,18 +183,19 @@ export function ProjectsSection() {
                 </div>
               </CardContent>
               <CardFooter className="p-6 pt-0 flex justify-end gap-2">
-                {project.liveUrl && (
-                  <Button asChild variant="outline">
+                {project.liveUrl ? (
+                  <Button asChild>
                     <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <LinkIcon className="mr-2 h-4 w-4" /> Live Demo
+                      <LinkIcon className="mr-2 h-4 w-4" /> Visit Live Page
                     </Link>
                   </Button>
-                )}
-                <Button asChild>
-                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" /> View Project
-                  </Link>
-                </Button>
+                ) : project.githubUrl ? (
+                  <Button asChild>
+                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" /> View Project
+                    </Link>
+                  </Button>
+                ) : null}
               </CardFooter>
             </Card>
           ))}
