@@ -9,7 +9,7 @@ import Link from 'next/link';
 const experienceData = [
   {
     year: '2024 - Present',
-    title: 'ATEZ - AI Developer',
+    title: 'ATEZ',
     description:
       'Automating Cross-Border Trade, Intelligently Blockchain-Ready AI-Powered, End to end Customs & Transit Solutions. Revolutionizing cross-border trade with intelligent solutions for customs compliance, cross-border movement of goods, and autonomous data engineering, powered by Artificial Intelligence, Machine Learning, and Business Intelligence.',
   },
