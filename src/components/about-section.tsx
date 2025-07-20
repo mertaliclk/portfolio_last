@@ -39,7 +39,7 @@ const TimelineItem = ({ item, isVisible }: { item: typeof experienceData[0], isV
         <div className="w-0.5 flex-grow bg-primary/30"></div>
       </div>
       <div className="pb-12">
-        <div className="bg-card text-card-foreground rounded-lg shadow-lg p-6 -mt-2">
+        <div className="bg-card text-card-foreground rounded-lg shadow-lg p-6 -mt-2 transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
             <p className="text-primary font-bold mb-1">{item.year}</p>
             <h3 className="font-headline text-2xl font-bold mb-2">{item.title}</h3>
             <p className="text-muted-foreground">{item.description}</p>
@@ -108,7 +108,7 @@ export function AboutSection() {
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 {hobbies.map((hobby, index) => (
-                     <div key={index} className="bg-card text-card-foreground p-4 rounded-lg shadow-sm">
+                     <div key={index} className="bg-card text-card-foreground p-4 rounded-lg shadow-sm transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                         <p className="font-medium">{hobby}</p>
                     </div>
                 ))}
