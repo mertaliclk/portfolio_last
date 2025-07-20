@@ -32,7 +32,7 @@ const hobbies = [
 
 const TimelineItem = ({ item, isVisible }: { item: typeof experienceData[0], isVisible: boolean }) => {
   return (
-    <div className={`flex items-start gap-6 transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <div className={`flex items-start gap-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
       <div className="flex flex-col items-center">
         <div className="w-0.5 h-6 bg-primary/30"></div>
         <div className="w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20 shrink-0"></div>
