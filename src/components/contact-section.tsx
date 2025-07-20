@@ -17,8 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { uploadContactForm, getResumeDownloadURL } from '@/lib/firebase';
-import { Github, Linkedin, Download } from 'lucide-react';
-import Link from 'next/link';
+import { Download } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -148,14 +147,6 @@ export function ContactSection() {
           </Form>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 mt-8">
-            <div className="flex space-x-4">
-              <Button asChild variant="outline" size="icon">
-                <Link href="#" target="_blank" rel="noopener noreferrer"><Github /></Link>
-              </Button>
-              <Button asChild variant="outline" size="icon">
-                <Link href="#" target="_blank" rel="noopener noreferrer"><Linkedin /></Link>
-              </Button>
-            </div>
             <Button asChild variant="link" disabled={resumeUrl === '#'}>
                 <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
                     <Download className="mr-2 h-4 w-4" /> Download Resume

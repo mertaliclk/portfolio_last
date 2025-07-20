@@ -7,8 +7,8 @@ export function HeroSection() {
   return (
     <section id="home" className="relative w-full py-20 md:py-32 bg-gradient-to-br from-background via-green-900/10 to-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-          <div className="flex flex-col items-start space-y-6">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+          <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6">
             <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
               Crafting Digital Experiences
             </h1>
