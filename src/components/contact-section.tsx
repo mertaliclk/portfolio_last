@@ -73,6 +73,12 @@ export function ContactSection() {
                     <Copy className="h-5 w-5" />
                 </Button>
             </div>
+
+            <Button asChild>
+                <a href={`mailto:${email}`}>
+                    <Mail className="mr-2 h-4 w-4" /> Send an Email
+                </a>
+            </Button>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 mt-8">
             <Button asChild variant="link" disabled={resumeUrl === '#'}>
