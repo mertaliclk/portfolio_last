@@ -1,3 +1,5 @@
+'use client';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -40,10 +42,37 @@ const projects = [
 ];
 
 export function ProjectsSection() {
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
   return (
-    <section id="projects" className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50 dark:bg-secondary/20">
+    <section id="projects" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50 dark:bg-secondary/20">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className={`flex flex-col items-center justify-center space-y-4 text-center transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
             My Projects
           </h2>
@@ -53,7 +82,7 @@ export function ProjectsSection() {
         </div>
         <div className="grid gap-8 py-12 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
           {projects.map((project, index) => (
-            <Card key={index} className="overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl">
+            <Card key={index} className={`overflow-hidden transition-all duration-1000 ease-in-out hover:-translate-y-2 hover:shadow-xl ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 150}ms`}}>
               <CardHeader className="p-0">
                 <Image
                   src={project.image}

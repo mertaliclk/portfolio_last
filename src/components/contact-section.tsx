@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -30,9 +30,35 @@ export function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [resumeUrl, setResumeUrl] = React.useState('#');
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     getResumeDownloadURL().then(setResumeUrl);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+        observer.observe(sectionRef.current);
+    }
+
+    return () => {
+        if (sectionRef.current) {
+            observer.unobserve(sectionRef.current);
+        }
+    };
   }, []);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -65,8 +91,8 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-      <div className="container mx-auto grid items-center justify-center gap-8 px-4 text-center md:px-6">
+    <section id="contact" ref={sectionRef} className="w-full py-12 md:py-24 lg:py-32 bg-background">
+      <div className={`container mx-auto grid items-center justify-center gap-8 px-4 text-center md:px-6 transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="space-y-3">
           <h2 className="font-headline text-3xl font-bold tracking-tighter md:text-4xl/tight">Get in Touch</h2>
           <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">

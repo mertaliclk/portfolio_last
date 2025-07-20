@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative w-full py-20 md:py-32 bg-gradient-to-br from-background via-blue-100 to-background dark:from-background dark:via-blue-900/20 dark:to-background">
+    <section id="home" className="relative w-full py-20 md:py-32 bg-gradient-to-br from-background via-blue-100/10 to-background dark:from-background dark:via-blue-900/10 dark:to-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
           <div className="flex flex-col items-start space-y-6">
