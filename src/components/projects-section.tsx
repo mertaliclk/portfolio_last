@@ -106,6 +106,7 @@ const categories = ['All Projects', 'AI & Machine Learning', 'Web Development/Cy
 const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0], index: number, isVisible: boolean }) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const [isEntranceAnimationDone, setIsEntranceAnimationDone] = useState(false);
+    const [style, setStyle] = useState({});
 
     useEffect(() => {
         if (isVisible) {
@@ -126,15 +127,21 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
             const y = e.clientY - rect.top - rect.height / 2;
             const rotateY = (x / (rect.width / 2)) * 10;
             const rotateX = -(y / (rect.height / 2)) * 10;
-            card.style.setProperty('--rotate-y', `${rotateY}deg`);
-            card.style.setProperty('--rotate-x', `${rotateX}deg`);
-            card.style.setProperty('--translate-z', `50px`);
+            setStyle({
+                '--rotate-x': `${rotateX}deg`,
+                '--rotate-y': `${rotateY}deg`,
+                '--translate-z': '50px',
+                'transform': 'perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateZ(var(--translate-z))'
+            });
         };
 
         const handleMouseLeave = () => {
-            card.style.setProperty('--rotate-y', '0deg');
-            card.style.setProperty('--rotate-x', '0deg');
-            card.style.setProperty('--translate-z', `0px`);
+            setStyle({
+                '--rotate-x': '0deg',
+                '--rotate-y': '0deg',
+                '--translate-z': '0px',
+                'transform': 'perspective(1000px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) translateZ(var(--translate-z))'
+            });
         };
 
         card.addEventListener('mousemove', handleMouseMove);
@@ -149,15 +156,16 @@ const ProjectCard = ({ project, index, isVisible }: { project: typeof projects[0
     return (
         <Card
             ref={cardRef}
-            className={`overflow-hidden transition-all duration-500 ease-out hover:shadow-2xl hover:[transform:perspective(1000px)_rotateY(var(--rotate-y,0))_rotateX(var(--rotate-x,0))_translateZ(var(--translate-z,0))]`}
-            style={{ 
+            style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(2rem)',
                 transitionProperty: 'transform, opacity',
                 transitionTimingFunction: 'ease-out',
                 transitionDuration: isEntranceAnimationDone ? '200ms' : '500ms',
-                transitionDelay: isEntranceAnimationDone ? '0ms' : `${index * 100}ms`
+                transitionDelay: isEntranceAnimationDone ? '0ms' : `${index * 100}ms`,
+                ...(isEntranceAnimationDone ? style : {})
             }}
+            className="overflow-hidden hover:shadow-2xl"
         >
             <CardHeader className="p-0">
                 <Image
