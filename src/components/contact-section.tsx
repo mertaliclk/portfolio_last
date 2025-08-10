@@ -89,8 +89,8 @@ export function ContactSection() {
             </Button>
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 mt-8">
-            <Button asChild variant="link" disabled={resumeUrl === '#'}>
-                <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
+            <Button asChild variant="link">
+                <a href="/resume.pdf" download>
                     <Download className="mr-2 h-4 w-4" /> Download Resume
                 </a>
             </Button>

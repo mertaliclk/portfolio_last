@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -18,6 +21,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio_last' : '',
 };
 
 export default nextConfig;

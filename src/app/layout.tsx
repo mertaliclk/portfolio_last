@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'FolioForge | Your Personal Portfolio',
+  title: 'Mert Ali Çelik | Portfolio',
   description: 'A personal portfolio website to showcase projects and skills.',
 };
 

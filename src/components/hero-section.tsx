@@ -6,6 +6,8 @@ import { TypeAnimation } from 'react-type-animation';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useState } from 'react';
 import { loadSlim } from "@tsparticles/slim";
+import Image from 'next/image';
+import profile from '../images/profile.jpg';
 
 export function HeroSection() {
   const [ init, setInit ] = useState(false);
@@ -90,9 +92,27 @@ export function HeroSection() {
         />}
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 items-center gap-12">
-          <div className="flex flex-col items-center text-center space-y-6">
+          <div className="flex flex-col items-center text-center space-y-6 relative">
+            {/* Desktop/Tablet: Jumping sentence above profile image */}
+            <div className="hidden md:flex w-full justify-center">
+              <span
+                className="text-base lg:text-xl text-primary-foreground opacity-90 select-none interactive-message mysterious-message px-4 py-2"
+                style={{ fontFamily: '"UnifrakturMaguntia", "Creepster", cursive, var(--font-headline), sans-serif', fontWeight: 600, maxWidth: '90vw', wordBreak: 'break-word', background: 'none' }}
+              >
+                {[..."💯 Level up your experience. Explore with your mouse. Watch the whole site respond! 🔥"].map((char, i) => char === " " ? " " : <span key={i} className="jump-letter">{char}</span>)}
+              </span>
+            </div>
+            {/* Mobile: keep as is, no overlay */}
+            <span className="block md:hidden relative mx-auto mb-4 text-base text-primary-foreground opacity-80 select-none interactive-message mysterious-message" style={{ zIndex: 20, fontFamily: '"UnifrakturMaguntia", "Creepster", cursive, var(--font-headline), sans-serif', fontWeight: 600, maxWidth: '95vw', wordBreak: 'break-word' }}>
+              <ul className="list-none p-0 m-0 space-y-1">
+                <li><span role="img" aria-label="hundred">💯</span> {"Level up your experience".split("").map((char, i) => char === " " ? " " : <span key={i} className="jump-letter">{char}</span>)}</li>
+                <li>{"Explore with your mouse".split("").map((char, i) => char === " " ? " " : <span key={i} className="jump-letter">{char}</span>)}</li>
+                <li>{"Watch the whole site respond!".split("").map((char, i) => char === " " ? " " : <span key={i} className="jump-letter">{char}</span>)} <span role="img" aria-label="fire">🔥</span></li>
+              </ul>
+            </span>
+            <Image src={profile} alt="Profile" width={300} height={300} className="rounded-full mb-4 border-4 border-primary shadow-lg" />
             <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Hi, I'm Mert Ali
+              Hi, I'm Mert Ali Çelik
             </h1>
             <TypeAnimation
               sequence={[

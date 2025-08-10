@@ -1,155 +1,147 @@
-# FolioForge - Your AI-Powered Portfolio Website
+# Mert Ali Çelik | Portfolio
 
-Welcome to FolioForge! This is a modern, responsive, and feature-rich portfolio website built with Next.js, Firebase, and Genkit AI. It's designed to be easily customizable and deployable.
+Welcome to my personal portfolio website! This is a modern, responsive, and feature-rich portfolio built with Next.js, React, TypeScript, and Tailwind CSS.
 
-This project includes a fully-featured portfolio, a contact form that saves submissions to Firebase Storage, and an AI Design Assistant to help you refine your design.
+## 🚀 Features
 
-## Features
+- **Responsive Design**: Optimized for all device sizes
+- **Interactive Elements**: Hover effects, animations, and particle backgrounds
+- **Project Showcase**: Display of various projects with filtering capabilities
+- **Skills Section**: Comprehensive overview of technical skills
+- **Contact Form**: Easy way for visitors to get in touch
+- **Modern UI**: Clean, professional design with smooth animations
 
-- **Modern UI/UX:** A clean, professional, and visually engaging design built with Tailwind CSS and ShadCN UI.
-- **Responsive Design:** Looks great on desktop, tablet, and mobile devices.
-- **Project Showcase:** A gallery to display your work with images, descriptions, and links.
-- **Contact Form:** A serverless contact form that saves submissions directly to Firebase Storage.
-- **AI Design Assistant:** An integrated Genkit AI flow to provide design feedback.
-- **Downloadable Resume:** A link to your resume hosted on Firebase Storage.
-- **Two Deployment Options:** Deploy the full-featured site to Firebase App Hosting or a static version to GitHub Pages.
+## 🛠️ Tech Stack
 
-## Getting Started
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Styling**: Tailwind CSS, CSS Modules
+- **UI Components**: Radix UI components
+- **Animations**: Framer Motion, CSS animations
+- **Icons**: Lucide React
+- **Deployment**: GitHub Pages
 
-Follow these steps to get your portfolio website up and running.
+## 📁 Project Structure
 
-### 1. Prerequisites
+```
+src/
+├── app/                 # Next.js app directory
+├── components/          # Reusable UI components
+│   ├── ui/             # Base UI components
+│   ├── header.tsx      # Navigation header
+│   ├── hero-section.tsx # Hero section with profile
+│   ├── about-section.tsx # About and experience
+│   ├── skills-section.tsx # Skills showcase
+│   ├── projects-section.tsx # Projects display
+│   └── contact-section.tsx # Contact form
+├── images/             # Static images
+├── lib/                # Utility functions
+└── hooks/              # Custom React hooks
+```
 
-- [Node.js](https://nodejs.org/) (version 18 or higher)
-- [Firebase Account](https://firebase.google.com/) with a new project created.
+## 🚀 Getting Started
 
-### 2. Clone and Install Dependencies
+### Prerequisites
 
-First, clone this repository and install the necessary npm packages.
+- Node.js 18+ 
+- npm or yarn
 
+### Installation
+
+1. Clone the repository:
 ```bash
-git clone <your-repository-url>
-cd <repository-name>
+git clone https://github.com/yourusername/portfolio_last.git
+cd portfolio_last
+```
+
+2. Install dependencies:
+```bash
 npm install
 ```
 
-### 3. Firebase Setup
-
-This project uses Firebase for two key features:
-1.  **Firebase Storage:** To host your project images and resume PDF.
-2.  **Firebase Storage:** To store contact form submissions as JSON files.
-
-**A. Create a Firebase Project**
-
-If you haven't already, go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
-
-**B. Create a Web App**
-
-In your Firebase project, create a new Web App. You'll be provided with a `firebaseConfig` object. You will need this for the next step.
-
-**C. Configure Firebase in Your Project**
-
-Open the file `src/lib/firebase.ts`. You will see a placeholder `firebaseConfig` object. Replace the placeholder values with the actual configuration keys from your Firebase Web App.
-
-```typescript
-// src/lib/firebase.ts
-
-const firebaseConfig: FirebaseOptions = {
-  apiKey: "YOUR_API_KEY", // Replace with your key
-  authDomain: "YOUR_AUTH_DOMAIN", // Replace with your domain
-  projectId: "YOUR_PROJECT_ID", // Replace with your ID
-  storageBucket: "YOUR_STORAGE_BUCKET", // Replace with your bucket
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Replace with your sender ID
-  appId: "YOUR_APP_ID", // Replace with your App ID
-};
-```
-
-**D. Configure Firebase Storage Rules**
-
-For the contact form and resume download to work, you need to adjust your Firebase Storage security rules. Go to `Storage -> Rules` in your Firebase Console and update the rules to allow public reads (for assets) and writes to the `submissions/` path.
-
-**WARNING:** The following rules are for development purposes and allow public access. For production, you may want to implement more secure rules.
-
-```
-rules_version = '2';
-service firebase.storage {
-  match /b/{bucket}/o {
-    // Allow public read access to all files except submissions
-    match /{allPaths=**} {
-      allow read;
-    }
-    // Allow anyone to write to the submissions folder
-    match /submissions/{submissionId} {
-      allow write;
-    }
-  }
-}
-```
-
-### 4. Upload Your Assets
-
-Manually upload your project images and resume PDF to your Firebase Storage bucket via the Firebase Console.
-
-- **Project Images:** Note the path of each image. You will update the URLs in `src/components/projects-section.tsx`.
-- **Resume:** Upload your resume (e.g., `resume.pdf`). Then, update the path in `src/lib/firebase.ts` inside the `getResumeDownloadURL` function.
-
-### 5. Running the Development Server
-
-To run the application locally, use the following command. This will start the Next.js development server.
-
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-Your portfolio will be available at `http://localhost:9002`.
+4. Open [http://localhost:9002](http://localhost:9002) in your browser.
 
-## Deployment
+## 🚀 Deployment to GitHub Pages
 
-You have two primary options for deploying your site.
+This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
 
-### Option 1: Firebase App Hosting (Recommended for Full Features)
+### Setup Steps:
 
-Firebase App Hosting is the easiest way to deploy the full application, including the AI Design Assistant.
+1. **Push to GitHub**: Push your code to a GitHub repository
+2. **Enable GitHub Pages**: 
+   - Go to your repository Settings
+   - Navigate to Pages section
+   - Select "GitHub Actions" as the source
+3. **Automatic Deployment**: The GitHub Action will automatically build and deploy your site
 
-1.  Follow the [Firebase App Hosting documentation](https://firebase.google.com/docs/app-hosting) to connect your GitHub repository.
-2.  Firebase will automatically build and deploy your application whenever you push to your main branch.
-
-This method ensures all features, including server-side AI functions, work correctly.
-
-### Option 2: GitHub Pages (Static Site)
-
-You can deploy a static version of your portfolio to GitHub Pages for free. **Note:** This method will not include the AI Design Assistant, as it requires a server.
-
-**A. Enable Static Export**
-
-In `next.config.ts`, add the `output: 'export'` line:
-
-```typescript
-// next.config.ts
-import type {NextConfig} from 'next';
-
-const nextConfig: NextConfig = {
-  output: 'export', // Add this line
-  /* other config options */
-};
-
-export default nextConfig;
-```
-
-**B. Build the Static Site**
-
-Run the build command:
+### Manual Build (if needed):
 
 ```bash
 npm run build
 ```
 
-This will generate a static version of your site in the `out` folder.
+The built files will be in the `out/` directory.
 
-**C. Deploy to GitHub Pages**
+## 📝 Customization
 
-Follow the official [GitHub Pages documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) to deploy the contents of the `out` folder. Typically, you would set your publishing source to the `gh-pages` branch and push the `out` folder's contents to that branch.
+### Personal Information
+- Update personal details in `src/components/hero-section.tsx`
+- Modify experience data in `src/components/about-section.tsx`
+- Update project information in `src/components/projects-section.tsx`
+
+### Styling
+- Modify colors in `tailwind.config.ts`
+- Update global styles in `src/app/globals.css`
+- Customize component styles in individual component files
+
+### Images
+- Replace profile image in `src/images/profile.jpg`
+- Update project images in `src/images/`
+- Add new images as needed
+
+## 🔧 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run export` - Export static files
+- `npm run lint` - Run ESLint
+- `npm run typecheck` - Run TypeScript compiler
+
+## 📱 Responsive Design
+
+The portfolio is fully responsive and optimized for:
+- Mobile devices (320px+)
+- Tablets (768px+)
+- Desktop (1024px+)
+- Large screens (1440px+)
+
+## 🎨 Design Features
+
+- **Dark Theme**: Modern dark color scheme
+- **Smooth Animations**: CSS transitions and hover effects
+- **Interactive Elements**: Particle background, hover animations
+- **Typography**: Custom font combinations for headings and body text
+- **Color Scheme**: Consistent primary and accent colors
+
+## 🤝 Contributing
+
+Feel free to submit issues and enhancement requests!
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📞 Contact
+
+- **GitHub**: [@mertaliclk](https://github.com/mertaliclk)
+- **LinkedIn**: [Mert Ali Çelik](https://www.linkedin.com/in/mertaliclk/)
+- **Instagram**: [@mertaliclk](https://www.instagram.com/mertaliclk/)
+- **YouTube**: [@cantguardmac13](https://www.youtube.com/@cantguardmac13)
 
 ---
 
-Enjoy your new portfolio!
+Built with ❤️ using Next.js and Tailwind CSS
