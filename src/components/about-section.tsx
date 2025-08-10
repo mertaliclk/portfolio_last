@@ -154,14 +154,7 @@ export function AboutSection() {
                      <Image src={football1} alt="American Football image 1" width={600} height={400} className="rounded-md object-cover" />
                     <Image src={football2} alt="American Football image 2" width={600} height={400} className="rounded-md object-cover" />
                 </div>
-                <div className="flex flex-col gap-8 mb-6">
-<video src="/images/football1.mp4" muted controls autoPlay loop playsInline className="rounded-md w-full aspect-video max-h-[600px] object-cover">
-  Your browser does not support the video tag. If you can't see the video, check your browser console for errors.
-</video>
-<video src="/images/football2.mp4" muted controls autoPlay loop playsInline className="rounded-md w-full aspect-video max-h-[600px] object-cover">
-  Your browser does not support the video tag. If you can't see the video, check your browser console for errors.
-</video>
-</div>
+
                  <Button asChild variant="destructive">
                     <Link href="https://www.youtube.com/watch?v=VQxN4uxEV3k" target="_blank" rel="noopener noreferrer">
                         <Youtube className="mr-2 h-5 w-5" />
