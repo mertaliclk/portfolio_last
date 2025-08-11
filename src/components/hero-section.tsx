@@ -103,7 +103,7 @@ export function HeroSection() {
               </span>
             </div>
             {/* Mobile: keep as is, no overlay */}
-            <span className="block md:hidden relative mx-auto mb-4 text-[13px] leading-tight text-primary-foreground opacity-90 select-none px-3 py-2 text-center" style={{ zIndex: 20, fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif', fontWeight: 700, maxWidth: '92vw', wordBreak: 'normal' }}>
+            <span className="block md:hidden relative mx-auto mb-4 text-[13px] leading-tight text-primary-foreground opacity-90 select-none px-3 py-2 text-center interactive-message mysterious-message" style={{ zIndex: 20, fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif', fontWeight: 700, maxWidth: '92vw', wordBreak: 'normal' }}>
               💯 Level up your experience. Explore with your mouse. Watch the whole site respond! 🔥
             </span>
             <Image src={profile} alt="Profile" width={300} height={300} className="rounded-full mb-4 border-4 border-primary shadow-lg" />

@@ -50,21 +50,31 @@ export function Header() {
     return () => observer.current?.disconnect();
   }, []);
   
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
     const sectionId = href.substring(1);
 
-    // Immediately update the active link
+    // Smooth scroll to the section
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Update UI state
     setActiveLink(sectionId);
     setIsOpen(false);
-    
-    // Disable observer and set a timeout to re-enable it after scroll
+
+    // Temporarily pause intersection observer
     isClickNavigating.current = true;
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
     }
     scrollTimeout.current = setTimeout(() => {
       isClickNavigating.current = false;
-    }, 1000); // A bit longer than scroll duration
+    }, 1000);
   };
 
   return (
@@ -82,7 +92,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => handleLinkClick(link.href)}
+              onClick={(e) => handleLinkClick(e, link.href)}
               className={`link-underline transition-colors hover:text-primary uppercase tracking-wider ${activeLink === link.href.substring(1) ? 'active' : ''}`}
             >
               {link.label}
@@ -121,7 +131,7 @@ export function Header() {
                       key={link.href}
                       href={link.href}
                       className="text-lg transition-colors hover:text-primary"
-                      onClick={() => handleLinkClick(link.href)}
+                      onClick={(e) => handleLinkClick(e, link.href)}
                     >
                       {link.label}
                     </Link>
