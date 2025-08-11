@@ -138,7 +138,7 @@ body {
 
 @media (min-width: 768px) {
   .mysterious-message:hover {
-    font-size: 1.8em;
+    font-size: 1.6em; /* reduced from 1.8em to avoid pushing emojis down */
   }
 }
 
