@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio_last' : '',
+  // basePath removed to support custom domain (no subpath)
 };
 
 export default nextConfig;
