@@ -38,7 +38,7 @@ export function Header() {
                 setActiveLink(entry.target.id);
             }
         });
-    }, { rootMargin: '-50% 0px -50% 0px' });
+    }, { rootMargin: '-35% 0px -55% 0px' });
 
     const sections = navLinks.map(link => document.querySelector(link.href));
     sections.forEach(section => {
@@ -57,24 +57,34 @@ export function Header() {
     e.preventDefault();
     const sectionId = href.substring(1);
 
-    // Smooth scroll to the section
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // Update UI state
+    // Update UI state immediately
     setActiveLink(sectionId);
-    setIsOpen(false);
 
-    // Temporarily pause intersection observer
-    isClickNavigating.current = true;
-    if (scrollTimeout.current) {
-      clearTimeout(scrollTimeout.current);
+    // Determine if sheet is open (mobile). Close first to release scroll lock.
+    const isSheetOpen = isOpen;
+    if (isSheetOpen) {
+      setIsOpen(false);
     }
-    scrollTimeout.current = setTimeout(() => {
-      isClickNavigating.current = false;
-    }, 1000);
+
+    const performScroll = () => {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Temporarily pause intersection observer so active state doesn't flicker
+      isClickNavigating.current = true;
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      scrollTimeout.current = setTimeout(() => {
+        isClickNavigating.current = false;
+      }, 1000);
+    };
+
+    // If mobile sheet was open, wait for close animation to finish
+    const delay = isSheetOpen ? 300 : 0;
+    window.setTimeout(performScroll, delay);
   };
 
   return (
