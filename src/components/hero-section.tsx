@@ -7,7 +7,7 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { useEffect, useState } from 'react';
 import { loadSlim } from "@tsparticles/slim";
 import Image from 'next/image';
-import profile from '../images/profile.jpg';
+import profile from '../images/profile-copy.jpg';
 
 export function HeroSection() {
   const [ init, setInit ] = useState(false);
