@@ -94,7 +94,7 @@ export function HeroSection() {
         <div className="grid grid-cols-1 items-center gap-12">
           <div className="flex flex-col items-center text-center space-y-6 relative">
             {/* Desktop/Tablet: Jumping sentence above profile image */}
-            <div className="hidden md:flex w-full justify-center">
+            <div className="hidden lg:flex w-full justify-center">
               <span
                 className="text-base lg:text-xl text-primary-foreground opacity-90 select-none interactive-message mysterious-message px-4 py-2"
                 style={{ fontFamily: '"UnifrakturMaguntia", "Creepster", cursive, var(--font-headline), sans-serif', fontWeight: 600, maxWidth: '90vw', wordBreak: 'break-word', background: 'none' }}
@@ -103,12 +103,8 @@ export function HeroSection() {
               </span>
             </div>
             {/* Mobile: keep as is, no overlay */}
-            <span className="block md:hidden relative mx-auto mb-4 text-sm md:text-base text-primary-foreground opacity-90 select-none px-3 py-2" style={{ zIndex: 20, fontFamily: 'var(--font-headline), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif', fontWeight: 600, maxWidth: '92vw', wordBreak: 'normal', lineHeight: 1.25 }}>
-              <ul className="list-none p-0 m-0 space-y-1 text-center">
-                <li>💯 Level up your experience</li>
-                <li>Explore with your mouse</li>
-                <li>Watch the whole site respond! 🔥</li>
-              </ul>
+            <span className="block md:hidden relative mx-auto mb-4 text-[13px] leading-tight text-primary-foreground opacity-90 select-none px-3 py-2 text-center" style={{ zIndex: 20, fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif', fontWeight: 700, maxWidth: '92vw', wordBreak: 'normal' }}>
+              💯 Level up your experience. Explore with your mouse. Watch the whole site respond! 🔥
             </span>
             <Image src={profile} alt="Profile" width={300} height={300} className="rounded-full mb-4 border-4 border-primary shadow-lg" />
             <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
